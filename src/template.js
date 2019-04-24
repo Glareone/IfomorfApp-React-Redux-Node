@@ -15,7 +15,7 @@ function template(title, initialState = {}, content = "") {
   if (content) {
     scripts = `<script>window.__STATE__ = ${JSON.stringify(initialState)}</script><script src="assets/client.js"></script>`
   } else {
-    scripts = `<script src="assets/bundle.js"> </script> `
+    scripts = `<script src="assets/bundle.js"></script>`;
   }
   let page = `<!DOCTYPE html>
               <html lang="en">
@@ -27,7 +27,7 @@ function template(title, initialState = {}, content = "") {
               <body>
                 <div class="content">
                    <div id="app" class="wrap-inner">
-                      <!--- magic happens here --> ${content}
+                      <!--- magic happens here -->${content}
                    </div>
                 </div>
                   ${scripts}
