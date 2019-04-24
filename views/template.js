@@ -1,5 +1,9 @@
 "use strict";
 
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
 // template.js exports a function. It takes title, state and content as input.
 // It injects them into the template and returns the final HTML document.
 //
@@ -20,11 +24,10 @@ function template(title) {
   if (content) {
     scripts = "<script>window.__STATE__ = ".concat(JSON.stringify(initialState), "</script><script src=\"assets/client.js\"></script>");
   } else {
-    scripts = "<script src=\"assets/bundle.js\"></script>";
+    scripts = "<script src=\"../assets/bundle.js\"></script>";
   }
 
-  var page = "<!DOCTYPE html>\n              <html lang=\"en\">\n              <head>\n                <meta charset=\"utf-8\">\n                <title>".concat(title, "</title>\n                <link href=\"assets/style.css\" rel=\"stylesheet\">\n              </head>\n              <body>\n                <div class=\"content\">\n                   <div id=\"app\" class=\"wrap-inner\">\n                      <!--- magic happens here -->").concat(content, "\n                   </div>\n                </div>\n                  ").concat(scripts, "\n              </body>\n              </html>");
-  return page;
+  return "<html lang=\"en\">\n              <head>\n                <meta charSet=\"utf-8\" />\n                <title>".concat(title, "</title>\n                <link href=\"assets/style.css\" rel=\"stylesheet\" />\n              </head>\n              <body>\n                <div class=\"content\"><div id=\"app\" class=\"wrap-inner\">").concat(content, "</div>\n                </div>").concat(scripts, "</body>\n              </html>");
 }
 
 module.exports = template;
