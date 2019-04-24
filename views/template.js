@@ -24,10 +24,10 @@ function template(title) {
   if (content) {
     scripts = "<script>window.__STATE__ = ".concat(JSON.stringify(initialState), "</script><script src=\"assets/client.js\"></script>");
   } else {
-    scripts = "<script src=\"assets/bundle.js\"></script>";
+    scripts = "<script src=\"../assets/bundle.js\"></script>";
   }
 
-  return "<html lang=\"en\">\n              <head>\n                <meta charSet=\"utf-8\" />\n                <title>".concat(title, "</title>\n                <link href=\"assets/style.css\" rel=\"stylesheet\" />\n              </head>\n              <body>\n                <div className=\"content\"><div id=\"app\" className=\"wrap-inner\">").concat(content, "</div>\n                </div>").concat(scripts, "</body>\n              </html>");
+  return "<html lang=\"en\">\n              <head>\n                <meta charSet=\"utf-8\" />\n                <title>".concat(title, "</title>\n                <link href=\"assets/style.css\" rel=\"stylesheet\" />\n              </head>\n              <body>\n                <div class=\"content\"><div id=\"app\" class=\"wrap-inner\">").concat(content, "</div>\n                </div>").concat(scripts, "</body>\n              </html>");
 }
 
 module.exports = template;

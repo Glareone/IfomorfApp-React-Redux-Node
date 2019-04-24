@@ -25,7 +25,7 @@ function template(title, initialState = {}, content = "") {
                 <link href="assets/style.css" rel="stylesheet" />
               </head>
               <body>
-                <div className="content"><div id="app" className="wrap-inner">${content}</div>
+                <div class="content"><div id="app" class="wrap-inner">${content}</div>
                 </div>${scripts}</body>
               </html>`);
 }
