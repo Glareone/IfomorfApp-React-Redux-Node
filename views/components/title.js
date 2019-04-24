@@ -7,14 +7,6 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactRedux = require("react-redux");
-
-var _actions = require("../redux/actions");
-
-var _card = _interopRequireDefault(require("./card"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj["default"] = obj; return newObj; } }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -35,49 +27,34 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var App =
+var Title =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(App, _Component);
+  _inherits(Title, _Component);
 
-  function App() {
-    _classCallCheck(this, App);
+  function Title() {
+    _classCallCheck(this, Title);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(App).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Title).apply(this, arguments));
   }
 
-  _createClass(App, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var dispatch = this.props.dispatch;
-      dispatch((0, _actions.fetchAppsIfNeeded)());
-    }
-  }, {
+  _createClass(Title, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          isFetching = _this$props.isFetching,
-          apps = _this$props.apps;
-      var totalapps = apps.length;
-      return _react["default"].createElement("div", null, isFetching && apps.length === 0 && _react["default"].createElement("h2", null, "Loading..."), !isFetching && apps.length === 0 && _react["default"].createElement("h2", null, "Empty."), _react["default"].createElement(_card["default"], {
-        apps: apps,
-        totalapps: totalapps
-      }));
+      if (this.props.publisher) {
+        return _react["default"].createElement("h3", null, this.props.name, _react["default"].createElement("span", {
+          className: "connector"
+        }, "by "), _react["default"].createElement("span", {
+          className: "publisher"
+        }, this.props.publisher));
+      } else {
+        return _react["default"].createElement("h3", null, this.props.name);
+      }
     }
   }]);
 
-  return App;
+  return Title;
 }(_react.Component);
 
-function mapStateToProps(state) {
-  var isFetching = state.isFetching,
-      apps = state.apps;
-  return {
-    isFetching: isFetching,
-    apps: apps
-  };
-}
-
-var _default = (0, _reactRedux.connect)(mapStateToProps)(App);
-
+var _default = Title;
 exports["default"] = _default;

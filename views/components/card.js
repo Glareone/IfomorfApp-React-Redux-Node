@@ -7,11 +7,9 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactRedux = require("react-redux");
+var _cardLeft = _interopRequireDefault(require("./card-left"));
 
-var _actions = require("../redux/actions");
-
-var _card = _interopRequireDefault(require("./card"));
+var _cardRight = _interopRequireDefault(require("./card-right"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -35,49 +33,71 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var App =
+var Card =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(App, _Component);
+  _inherits(Card, _Component);
 
-  function App() {
-    _classCallCheck(this, App);
+  function Card() {
+    _classCallCheck(this, Card);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(App).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(Card).apply(this, arguments));
   }
 
-  _createClass(App, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var dispatch = this.props.dispatch;
-      dispatch((0, _actions.fetchAppsIfNeeded)());
+  _createClass(Card, [{
+    key: "Cardbaker",
+    value: function Cardbaker(props) {
+      var cards = [],
+          cardNumber = 1;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = props.apps[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var app = _step.value;
+          cards.push(_react["default"].createElement("div", {
+            className: "app-card",
+            key: app.name
+          }, _react["default"].createElement(_cardLeft["default"], {
+            img: app.img,
+            appno: cardNumber,
+            totalapps: props.totalapps
+          }), _react["default"].createElement(_cardRight["default"], {
+            name: app.name,
+            app: app
+          })));
+          cardNumber++;
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      return _react["default"].createElement("div", null, cards);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          isFetching = _this$props.isFetching,
-          apps = _this$props.apps;
-      var totalapps = apps.length;
-      return _react["default"].createElement("div", null, isFetching && apps.length === 0 && _react["default"].createElement("h2", null, "Loading..."), !isFetching && apps.length === 0 && _react["default"].createElement("h2", null, "Empty."), _react["default"].createElement(_card["default"], {
-        apps: apps,
-        totalapps: totalapps
-      }));
+      return _react["default"].createElement(this.Cardbaker, {
+        apps: this.props.apps,
+        totalapps: this.props.totalapps
+      });
     }
   }]);
 
-  return App;
+  return Card;
 }(_react.Component);
 
-function mapStateToProps(state) {
-  var isFetching = state.isFetching,
-      apps = state.apps;
-  return {
-    isFetching: isFetching,
-    apps: apps
-  };
-}
-
-var _default = (0, _reactRedux.connect)(mapStateToProps)(App);
-
+var _default = Card;
 exports["default"] = _default;

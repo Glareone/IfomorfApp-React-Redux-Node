@@ -25,13 +25,8 @@ function template(title, initialState = {}, content = "") {
                 <link href="assets/style.css" rel="stylesheet">
               </head>
               <body>
-                <div class="content">
-                   <div id="app" class="wrap-inner">
-                      <!--- magic happens here -->${content}
-                   </div>
-                </div>
-                  ${scripts}
-              </body>
+                <div class="content"><div id="app" class="wrap-inner">${content}</div>
+                </div>${scripts}</body>
               </html>`;
   return page;
 }

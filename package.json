@@ -4,9 +4,9 @@
   "description": "Initial project for React isomorf application with Server-side rendering",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "pack": "webpack --config webpack.config.js",
-    "babel": "babel src -d views",
+    "start": "node index.js --mode development",
+    "pack": "webpack --config webpack.config.js --mode=development",
+    "babel": "babel src -d views --mode=development",
     "build": "npm run pack && npm run babel"
   },
   "dependencies": {

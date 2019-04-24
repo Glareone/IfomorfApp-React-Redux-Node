@@ -19,7 +19,6 @@ class CardRight extends Component {
             <i className="icon icon-inline icon-twitter-light"></i>
             Tweet
           </a>
-
         </div>
       </div>
     );

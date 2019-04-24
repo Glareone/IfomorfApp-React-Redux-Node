@@ -7,11 +7,7 @@ exports["default"] = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _reactRedux = require("react-redux");
-
-var _actions = require("../redux/actions");
-
-var _card = _interopRequireDefault(require("./card"));
+var _title = _interopRequireDefault(require("./title"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -35,49 +31,61 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var App =
+var tweet = require('./tweet');
+
+var CardRight =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(App, _Component);
+  _inherits(CardRight, _Component);
 
-  function App() {
-    _classCallCheck(this, App);
+  function CardRight() {
+    _classCallCheck(this, CardRight);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(App).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(CardRight).apply(this, arguments));
   }
 
-  _createClass(App, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var dispatch = this.props.dispatch;
-      dispatch((0, _actions.fetchAppsIfNeeded)());
-    }
-  }, {
+  _createClass(CardRight, [{
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          isFetching = _this$props.isFetching,
-          apps = _this$props.apps;
-      var totalapps = apps.length;
-      return _react["default"].createElement("div", null, isFetching && apps.length === 0 && _react["default"].createElement("h2", null, "Loading..."), !isFetching && apps.length === 0 && _react["default"].createElement("h2", null, "Empty."), _react["default"].createElement(_card["default"], {
-        apps: apps,
-        totalapps: totalapps
-      }));
+      var _this = this;
+
+      return _react["default"].createElement("div", {
+        className: "col-right"
+      }, _react["default"].createElement("div", {
+        className: "app-meta"
+      }, _react["default"].createElement(_title["default"], {
+        name: this.props.name,
+        publisher: this.props.app.publisher
+      }), _react["default"].createElement("span", {
+        className: "app-lic"
+      }, this.props.app.price)), _react["default"].createElement("div", {
+        className: "app-intro",
+        dangerouslySetInnerHTML: {
+          __html: this.props.app.desc
+        }
+      }), _react["default"].createElement("hr", null), _react["default"].createElement("div", {
+        className: "app-link"
+      }, _react["default"].createElement("a", {
+        className: "btn",
+        href: this.props.app.link,
+        target: "_blank"
+      }, "Get App"), _react["default"].createElement("a", {
+        href: "#/",
+        className: "btn btn-twitter",
+        title: "Share on Twitter",
+        rel: "nofollow",
+        onClick: function onClick(e) {
+          tweet(_this.props.app.tweet);
+          e.preventDefault();
+        }
+      }, _react["default"].createElement("i", {
+        className: "icon icon-inline icon-twitter-light"
+      }), "Tweet")));
     }
   }]);
 
-  return App;
+  return CardRight;
 }(_react.Component);
 
-function mapStateToProps(state) {
-  var isFetching = state.isFetching,
-      apps = state.apps;
-  return {
-    isFetching: isFetching,
-    apps: apps
-  };
-}
-
-var _default = (0, _reactRedux.connect)(mapStateToProps)(App);
-
+var _default = CardRight;
 exports["default"] = _default;
