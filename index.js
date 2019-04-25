@@ -1,9 +1,11 @@
-// This is the entry point of our application. It handles requests and templating.
+// This is the entry point of our application.
+// It handles requests and templating.
+
 // It also declares an initialState variable. I have modelled it with data in the assets/data.json file.
 // We will pass it to our ssr() function.
 //
 // Note: While referencing a file that is inside src/ from a file outside src/ , use normal require() and replace
-// src/ by views/. You know the reason (Babel compile).
+// src/ by views/.
 const express = require('express'),
   app = express(),
   template = require('./views/template');

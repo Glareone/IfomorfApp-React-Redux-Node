@@ -1,3 +1,5 @@
+// The Client Side
+// pay attention on hydrate
 import React from 'react';
 import {hydrate} from 'react-dom';
 import {Provider} from 'react-redux';
@@ -10,7 +12,7 @@ const state = window.__STATE__;
 delete window.__STATE__;
 const store = configureStore(state);
 // Replace render() with hydrate(). hydrate() is the same as render() but is used to hydrate elements rendered
-// by ReactDOMServer. It ensures that the content is the same on the server and the client.
+// by ReactDOMServer (!!!). It ensures that the content is the same on the server and the client.
 // Read the state from the global window object window.__STATE__. Store it in a variable and delete the window.__STATE__.
 // Create a fresh store with state as initialState.
 hydrate(
