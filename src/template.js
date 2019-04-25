@@ -18,7 +18,12 @@ function template(title, initialState = {}, content = "") {
     scripts = `<script>window.__STATE__ = ${JSON.stringify(initialState)}</script><script src="assets/client.js"></script>`
   } else {
     // If you request the pure client version, it only puts assets/bundle.js inside the script tag.
-    scripts = `<script src="assets/bundle.js"></script>`;
+    // we use `` symbols because we need string to compose it in html tag instead of object
+    scripts = `<script src="../assets/bundle.js"></script>`;
+    // this version will return incorrect string and client rendering will work incorrect.
+    //scripts = `<script src="../assets/bundle.js" />`;
+    // will provide object to us instead of string
+    //scripts = (<script src="../assets/bundle.js" />);
   }
   // returns composed version
   return (`<html lang="en">
@@ -29,7 +34,8 @@ function template(title, initialState = {}, content = "") {
               </head>
               <body>
                 <div class="content"><div id="app" class="wrap-inner">${content}</div>
-                </div>${scripts}</body>
+                <div>${scripts}</div>
+              </body>
               </html>`);
 }
 
